@@ -27,7 +27,9 @@ Sub bmp_read()
     
     Dim buf As String
     cnt = 0
-    Const Path As String = "D:\プライベート\excel\BMPファイル読み取り\02_成果物"
+    Dim Path As String
+    Path = ThisWorkbook.Path
+
     Dim second_path As String
     second_path = Worksheets("TOP").Cells(button_name, 4)
     buf = Dir(Path & second_path)
@@ -257,7 +259,11 @@ Sub Music_Start()
     Dim buuton_name As Integer
     button_name = CInt(Worksheets("TOP").Buttons(Application.Caller).Text)
     '音楽再生
-    clsSound.SoundFile = "D:\プライベート\excel\BMPファイル読み取り\02_成果物\music" & Worksheets("TOP").Cells(button_name, 9)
+    
+    Dim Path As String
+    Path = ThisWorkbook.Path
+    
+    clsSound.SoundFile = Path & "\music" & Worksheets("TOP").Cells(button_name, 9)
     clsSound.GetLength '再生時間取得(Playの前にコールしないと再生しない)
     clsSound.Play      '音楽再生
     
@@ -286,7 +292,4 @@ Sub Playback()
         Application.Wait [Now()] + 83 / 86400000
       Next
     Next
-End Sub
-Sub test()
-  Workbooks.Open "D:\excel\BMPファイル読み取り\02_成果物\book.xlsx"
 End Sub
